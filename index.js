@@ -7,6 +7,18 @@ const app = express();
 // REQUIRED FOR SENDING FILES STORED ON SERVER BUT NOT FOR BASE64 STRINGS
 const fs = require('fs');
 
+const http = require("http")
+const server = http.createServer(app)
+const socket = require("socket.io")
+const io = socket(server)
+
+io.on("connection", socket => {
+    socket.emit("your id", socket.id)
+    socket.on("send message", body => {
+        io.emit("message", body)
+    })
+})
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -95,6 +107,6 @@ app.post('/api/mail', (req, res) => {
 });
 
 app.listen(process.env.PORT || 8080, () =>
-  console.log('Express server is running on localhost:3001'));
+  console.log('Express server is running on localhost:8080'));
 
   
