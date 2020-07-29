@@ -18,7 +18,6 @@ app.post('/api/email', (req, res) => {
       <li> Email: ${req.email}</li>
       <h3> Message </h3>
       <p>${req.body.message}</p>
-      ${req.body.file}
     </ul>
     `
 
@@ -41,7 +40,8 @@ app.post('/api/email', (req, res) => {
       attachments: [
         {
           filename: 'rebate.pdf',
-          path: __dirname+'rebate.pdf'
+          "Content-Type": 'application/pdf',
+          path: './rebate.pdf'
           // content: new Buffer("PLEASE", 'utf-8') 
           // content: 'hello!!' 
         }
@@ -65,4 +65,3 @@ const PORT = process.env.PORT || 8000
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
 })
-

@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-
 const nodemailer = require('nodemailer');
 
 let transporter = nodemailer.createTransport({
@@ -17,8 +16,9 @@ let mailOptions = {
   // to: 'test1124esther@gmail.com, second@gmail.com',
   // cc: 'second@gmail.com',
   // bcc: 'second@gmail.com',
-  subject: 'Testing and Testing',
-  text: 'NEW TEST!!!!!',
+  replyTo:'test123esther@gmail.com',
+  subject: 'REBATE TEST',
+  text: "Thank you for the service",
   attachments:[
     {filename: 'rebate.pdf',
     path: './rebate.pdf'}
@@ -32,7 +32,6 @@ let mailOptions = {
 //     console.log("Email sent!!")
 //   }
 // });
-
 
 transporter.sendMail(mailOptions)
 .then(function(response) {
