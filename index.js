@@ -49,7 +49,7 @@ var mailOptions = {
 function makeMailOptions(reqBody) {
   return {
     from: '"Esther" <esther@gmail.com>',
-    to: '"Rupa" <2d1004d14a-5620b3@inbox.mailtrap.io>',  
+    to: '"Newton Williams" <2d1004d14a-5620b3@inbox.mailtrap.io>',  
     subject: 'Nice Nodemailer test',
     text: 'Hey there, it’s our first message sent with Nodemailer ;) ',
     html: `
@@ -96,3 +96,5 @@ app.post('/api/mail', (req, res) => {
 
 app.listen(process.env.PORT || 8080, () =>
   console.log('Express server is running on localhost:3001'));
+
+  
