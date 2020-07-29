@@ -10,15 +10,17 @@ app.post('/api/email', (req, res) => {
   console.log("FILE NODE", req)
   nodemailer.createTestAccount((err, account) => {
     const htmlEmail = `
-    <h3>Contact Detail</h3>
-    <ul>
+    <h2>Client Information</h2>
+    <ul> 
       <li> Name: ${req.body.firstname + ' ' + req.body.lastname}</li>
       <li> Address: ${req.body.address}</li>
+      <li> Email: ${req.body.email}</li>
       <h3> Agent: ${req.body.agent}</h3>
-      <li> Email: ${req.email}</li>
-      <h3> Message </h3>
-      <p>${req.body.message}</p>
     </ul>
+    <hr/>
+    <h2> Message </h2>
+    <hr/>
+    <h3>${req.body.message}</h3>
     `
 
     const transporter = nodemailer.createTransport({
@@ -27,7 +29,11 @@ app.post('/api/email', (req, res) => {
       auth: {
           user: 'immanuel.turner16@ethereal.email',
           pass: 'utabbQ8YD8nwcgGRpJ'
+      },
+      tls:{
+        rejectUnauthorized:false
       }
+
   });
 
     let mailOptions = {
